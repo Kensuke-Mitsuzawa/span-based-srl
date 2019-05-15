@@ -96,5 +96,19 @@ SENNA: `python src/main.py --mode test --test_data path/to/conll2005.test.txt --
 ELMo: `python src/main.py --mode test --test_data path/to/conll2005.test.txt --data_type conll05 --drop_rate 0.1 --hidden_dim 300 --n_layers 4 --output_dir output --output_fn conll2005.test --test_elmo_emb path/to/elmo.conll2005.test.hdf5 --load_label output/label_ids.txt --load_param output/param.epoch-0.pkl.gz --search greedy`
 
 
+# For Developers
+
+## Download Elmo model
+
+```bash
+wget https://s3-us-west-2.amazonaws.com/allennlp/models/elmo/2x4096_512_2048cnn_2xhighway/elmo_2x4096_512_2048cnn_2xhighway_options.json
+wget https://s3-us-west-2.amazonaws.com/allennlp/models/elmo/2x4096_512_2048cnn_2xhighway/elmo_2x4096_512_2048cnn_2xhighway_weights.hdf5
+```
+
+## Set and run
+
+1. update variables in test.sh
+2. run test.sh
+
 ## LICENSE
 MIT License

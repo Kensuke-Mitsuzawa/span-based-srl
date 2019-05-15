@@ -1,7 +1,7 @@
 import numpy as np
-
 from utils.misc import array, str_to_id
 from utils.vocab import HYPH, UNK
+from typing import List
 
 
 class Sent(object):
@@ -37,7 +37,12 @@ class Sent(object):
     def _set_marks(self, words):
         raise NotImplementedError
 
-    def _set_props(self, words):
+    def _set_props(self, words)->List[List[str]]:
+        """
+
+        :param words: 1d: elem is Word object
+        :return: 2d: elem is Predicate label
+        """
         props = [word.prop for word in words]
         props = [self._make_bio_labels(prop) for prop in map(lambda p: p, zip(*props))]
         return list(map(lambda p: p, zip(*props)))
@@ -71,7 +76,7 @@ class Sent(object):
         self.elmo_emb = elmo_emb
 
     @staticmethod
-    def _make_bio_labels(prop):
+    def _make_bio_labels(prop: List):
         """
         :param prop: 1D: n_words; elem=bracket label
         :return: 1D: n_words; elem=BIO label
@@ -133,7 +138,7 @@ class Sent(object):
         """
         :param vocab_label: Vocab (labels); e.g. A0, A1
         """
-        triples = []
+        triples = []  # type: List[List[int, int, int]]
         for props in self.prd_props:
             triples_tmp = []
             for (label, i, j) in self._get_spans(props):
@@ -179,9 +184,8 @@ class Conll12Sent(Sent):
     def _set_marks(self, words):
         return list(map(lambda w: w.mark if w.sense != HYPH else HYPH, words))
 
-
 class Word(object):
-    def __init__(self, form, mark, sense, prop):
+    def __init__(self, form, mark, sense, prop: List):
         self.form = form.lower()
         self.string = form
         self.mark = mark

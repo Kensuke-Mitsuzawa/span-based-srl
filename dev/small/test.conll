@@ -1,0 +1,7 @@
+0:WORD 1:POS 2:PARSE 3:NE 4:LEMMA 5-:ARGS
+The                DT     (S1(S(NP*         *                 (A1*
+finger-pointing    JJ             *)        *    -               *)
+has                AUX         (VP*         *    -               *
+already            RB        (ADVP*)        *    -        (AM-TMP*)
+begun              VBN         (VP*))       *    begin         (V*)
+.

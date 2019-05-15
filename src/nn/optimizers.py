@@ -43,7 +43,8 @@ class Optimizer(object):
         if argv.output_fn:
             file_name = '/opt.param.%s.epoch-%d' % (argv.output_fn, epoch)
         else:
-            file_name = '/opt.param.%s.epoch-%d' % (argv.method, epoch)
+            #file_name = '/opt.param.%s.epoch-%d' % (argv.method, epoch)
+            file_name = '/opt.param.epoch-%d' % epoch
 
         fn = dir_name + file_name
         params = [p.get_value(borrow=True) for p in self.params]
